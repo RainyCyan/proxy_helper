@@ -17,6 +17,7 @@ check_proxy() {
     else
         echo "http_proxy=$http_proxy"
         echo "https_proxy=$https_proxy"
+        echo "test proxy: curl -I http://www.google.com"
     fi
 }
 
@@ -33,7 +34,7 @@ case $1 in
     set)
         if [ -z "$2" ]; then
             echo "Usage: $0 set <port>"
-            exit 1
+            return 1
         fi
         set_proxy $2
         ;;
@@ -45,6 +46,6 @@ case $1 in
         ;;
     *)
         echo "Usage: $0 {set <port>|unset|check}"
-        exit 1
+        return 1
         ;;
 esac
